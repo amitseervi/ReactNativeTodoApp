@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput} from 'react-native';
+import {View, TextInput, Button} from 'react-native';
 type InputTodoProps = {
   placeholderText: string;
   placeholderColor: string;
@@ -8,7 +8,6 @@ type InputTodoProps = {
   clearTextOnFocus: boolean;
   underlineColorAndroid: string;
   onSubmitText: (text: string) => void;
-  onTextChange?: (text: string) => void;
 };
 export type InputTodoState = {
   inputText: string;
@@ -22,15 +21,13 @@ class InputTodoComponent extends React.Component<
   InputTodoState
 > {
   state: InputTodoState = INITIAL_INPUT_STATE;
+
   private onTextChange = (text: string) => {
     this.setState({
       inputText: text,
     });
-    const propListener = this.props.onTextChange;
-    if (propListener) {
-      propListener(text);
-    }
   };
+
   private onTextSubmit = () => {
     const text = this.state.inputText;
     if (!text) {
@@ -59,6 +56,7 @@ class InputTodoComponent extends React.Component<
           onSubmitEditing={this.onTextSubmit}
           underlineColorAndroid={underlineColorAndroid}
         />
+        <Button title="Add" onPress={this.onTextSubmit} />
       </View>
     );
   }

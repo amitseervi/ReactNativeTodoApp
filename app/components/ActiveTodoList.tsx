@@ -12,21 +12,13 @@ export default class ActiveTodoList extends React.Component<
   ActiveTodoListState
 > {
   state = INITIAL_INPUT_STATE;
-  private onSubmitButtonClicked = () => {
-    const text = this.state.inputText;
-    console.log('On submit button clicked');
-    if (!text) {
-      //TODO : can show error message here
-      return;
-    }
-    this.props.onAdd(text);
+  person = {
+    name: '',
   };
 
-  private onInputTextChange = (text: string) => {
-    this.setState({
-      inputText: text,
-    });
-  };
+  componentDidMount() {
+    this.person.name = 'Ashish';
+  }
 
   private renderItem = (item: Todo) => {
     return (
@@ -43,12 +35,10 @@ export default class ActiveTodoList extends React.Component<
           maxLength={200}
           onSubmitText={this.props.onAdd}
           placeholderColor="#345323"
-          onTextChange={this.onInputTextChange}
           placeholderText="Add Todo Item"
           selectionColor="#457853"
           underlineColorAndroid="#094252"
         />
-        <Button title="Add" onPress={this.onSubmitButtonClicked} />
         <FlatList
           data={this.props.activeTodoList}
           keyExtractor={(item) => item.id}
