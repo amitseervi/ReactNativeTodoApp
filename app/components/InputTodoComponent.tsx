@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, TextInput, Button} from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 type InputTodoProps = {
   placeholderText: string;
   placeholderColor: string;
@@ -44,7 +50,7 @@ class InputTodoComponent extends React.Component<
     const clearTextOnFocus = this.props.clearTextOnFocus;
     const underlineColorAndroid = this.props.underlineColorAndroid;
     return (
-      <View>
+      <View style={styles.inputContainerStyle}>
         <TextInput
           value={this.state.inputText}
           placeholder={placeholderText}
@@ -55,11 +61,40 @@ class InputTodoComponent extends React.Component<
           onChangeText={this.onTextChange}
           onSubmitEditing={this.onTextSubmit}
           underlineColorAndroid={underlineColorAndroid}
+          style={styles.inputTextStyle}
         />
-        <Button title="Add" onPress={this.onTextSubmit} />
+        <TouchableOpacity
+          style={styles.inputButtonStyle}
+          onPress={this.onTextSubmit}>
+          <Text style={styles.inputButtonTextStyle}>Add</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
 export default InputTodoComponent;
+
+const styles = StyleSheet.create({
+  inputContainerStyle: {
+    padding: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  inputTextStyle: {
+    flex: 1,
+  },
+  inputButtonStyle: {
+    borderRadius: 4,
+    paddingHorizontal: 12,
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#4287f5',
+  },
+  inputButtonTextStyle: {
+    color: '#ffffff',
+    fontSize: 16,
+  },
+});

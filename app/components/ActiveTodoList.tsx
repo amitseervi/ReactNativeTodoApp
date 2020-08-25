@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, FlatList} from 'react-native';
+import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
 import Todo from '../models/Todo';
 import {ActiveTodoListProps} from '../containers/ActiveTodoListContainer';
 import InputTodoComponent, {
@@ -22,8 +22,8 @@ export default class ActiveTodoList extends React.Component<
 
   private renderItem = (item: Todo) => {
     return (
-      <View>
-        <Text>{item.title}</Text>
+      <View style={styles.rowItemContainer}>
+        <Text style={styles.rowItemTitle}>{item.title}</Text>
       </View>
     );
   };
@@ -48,3 +48,16 @@ export default class ActiveTodoList extends React.Component<
     );
   }
 }
+
+const styles = StyleSheet.create({
+  rowItemContainer: {
+    backgroundColor: '#111111',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    marginTop: 2,
+  },
+  rowItemTitle: {
+    color: '#ffffff',
+    fontSize: 20,
+  },
+});
