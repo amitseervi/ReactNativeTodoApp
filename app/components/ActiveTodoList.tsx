@@ -1,25 +1,13 @@
 import React from 'react';
-import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import Todo from '../models/Todo';
-import {ActiveTodoListProps} from '../containers/ActiveTodoListContainer';
-import InputTodoComponent, {
-  InputTodoState,
-  INITIAL_INPUT_STATE,
-} from './InputTodoComponent';
-type ActiveTodoListState = InputTodoState;
-export default class ActiveTodoList extends React.Component<
-  ActiveTodoListProps,
+import {TodoListProps} from '../containers/TodoListContainer';
+import InputTodoComponent from './InputTodoComponent';
+type ActiveTodoListState = {};
+export default class ActiveTodoListView extends React.Component<
+  TodoListProps,
   ActiveTodoListState
 > {
-  state = INITIAL_INPUT_STATE;
-  person = {
-    name: '',
-  };
-
-  componentDidMount() {
-    this.person.name = 'Ashish';
-  }
-
   private renderItem = (item: Todo) => {
     return (
       <View style={styles.rowItemContainer}>

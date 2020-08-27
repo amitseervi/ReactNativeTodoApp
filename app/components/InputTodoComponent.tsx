@@ -15,7 +15,7 @@ type InputTodoProps = {
   underlineColorAndroid: string;
   onSubmitText: (text: string) => void;
 };
-export type InputTodoState = {
+type InputTodoState = {
   inputText: string;
 };
 export const INITIAL_INPUT_STATE: InputTodoState = {

@@ -9,10 +9,12 @@ import {
 } from '../actions/TodoActionProviders';
 import {TodoListState} from '../states/TodoStates';
 import {connect, ConnectedProps} from 'react-redux';
-import ActiveTodoList from '../components/ActiveTodoList';
+import ActiveTodoListView from '../components/ActiveTodoList';
+import CompletedTodoListView from '../components/CompletedTodoList';
 
 const mapDispatchToProps = (dispatch: Dispatch<TodoActionType>) => ({
   onAdd: (title: string) => {
+    console.log('On add' + title);
     dispatch({
       ...EmptyAction,
       ...ActionAddTodo(title),
@@ -44,6 +46,6 @@ const mapStateToProps = (state: TodoListState) => ({
 });
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export type ActiveTodoListProps = ConnectedProps<typeof connector>;
+export type TodoListProps = ConnectedProps<typeof connector>;
 
-export default connector(ActiveTodoList);
+export default connector(CompletedTodoListView);
