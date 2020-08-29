@@ -6,6 +6,7 @@ import {
   ActionDeleteActiveTodo,
   ActionDeleteCompletedTodo,
   ActionCompleteTodo,
+  ActionMoveBackToPending,
 } from '../actions/TodoActionProviders';
 import {TodoListState} from '../states/TodoStates';
 import {connect, ConnectedProps} from 'react-redux';
@@ -14,7 +15,6 @@ import CompletedTodoListView from '../components/CompletedTodoList';
 
 const mapDispatchToProps = (dispatch: Dispatch<TodoActionType>) => ({
   onAdd: (title: string) => {
-    console.log('On add' + title);
     dispatch({
       ...EmptyAction,
       ...ActionAddTodo(title),
@@ -36,6 +36,12 @@ const mapDispatchToProps = (dispatch: Dispatch<TodoActionType>) => ({
     dispatch({
       ...EmptyAction,
       ...ActionCompleteTodo(id),
+    });
+  },
+  moveBackToTodo: (id: string) => {
+    dispatch({
+      ...EmptyAction,
+      ...ActionMoveBackToPending(id),
     });
   },
 });

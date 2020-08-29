@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   ActiveTodoList,
@@ -7,8 +8,9 @@ import {
 import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
+  BottomTabBarOptions,
 } from '@react-navigation/bottom-tabs';
-import {RouteProp} from '@react-navigation/native';
+import {LabelPosition} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 
 type Tab = {
   key: string;
@@ -21,35 +23,76 @@ type Tab = {
 const Tab = createBottomTabNavigator();
 
 export default class BottomBarContainer extends React.Component {
+  private tabTitle = (routeName: string) => {
+    switch (routeName) {
+      case 'complete': {
+        return 'Completed';
+      }
+      default:
+        return 'Todo';
+    }
+  };
   private myScreenOptions = (routeName: string): BottomTabNavigationOptions => {
     return {
-      title: 'Hello',
-      tabBarLabel: 'Test',
+      title: this.tabTitle(routeName),
+      tabBarLabel: (props: {
+        focused: boolean;
+        color: string;
+        position: LabelPosition;
+      }) => {
+        if (!props.focused) {
+          return <View />;
+        } else {
+          return (
+            <Text style={{color: 'white'}}>{this.tabTitle(routeName)}</Text>
+          );
+        }
+      },
       tabBarIcon: (props: {focused: boolean; color: string; size: number}) => {
         switch (routeName) {
           case 'complete': {
             return (
               <Ionicons
                 name="checkmark-done"
-                size={props.size}
-                color={props.color}
+                size={props.focused ? props.size + 4 : props.size}
+                color="#2181ff"
               />
             );
           }
           default: {
             return (
-              <Ionicons name="list" size={props.size} color={props.color} />
+              <Ionicons
+                name="list"
+                size={props.focused ? props.size + 4 : props.size}
+                color="#ff3421"
+              />
             );
           }
         }
       },
     };
   };
+
+  private myTabBarOptions: BottomTabBarOptions = {
+    activeBackgroundColor: 'black',
+    inactiveBackgroundColor: '#333333',
+    activeTintColor: '#FFFFFF',
+    labelStyle: {
+      color: '#FFFFFF',
+      fontSize: 14,
+    },
+    iconStyle: {
+      padding: 1,
+    },
+    tabStyle: {
+      padding: 2,
+    },
+  };
   render() {
     return (
       <Tab.Navigator
-        lazy={true}
-        backBehavior="history"
+        lazy={false}
+        tabBarOptions={this.myTabBarOptions}
         screenOptions={(props: {
           route: {
             name: string;

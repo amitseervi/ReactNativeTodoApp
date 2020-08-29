@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 type InputTodoProps = {
   placeholderText: string;
   placeholderColor: string;
@@ -66,7 +67,7 @@ class InputTodoComponent extends React.Component<
         <TouchableOpacity
           style={styles.inputButtonStyle}
           onPress={this.onTextSubmit}>
-          <Text style={styles.inputButtonTextStyle}>Add</Text>
+          <Icon name="send" style={styles.inputButtonIconStyle} size={20} />
         </TouchableOpacity>
       </View>
     );
@@ -83,18 +84,16 @@ const styles = StyleSheet.create({
   },
   inputTextStyle: {
     flex: 1,
+    color: 'white',
   },
   inputButtonStyle: {
-    borderRadius: 4,
-    paddingHorizontal: 12,
-    flexDirection: 'column',
+    padding: 8,
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#4287f5',
+    backgroundColor: 'transparent',
   },
-  inputButtonTextStyle: {
-    color: '#ffffff',
-    fontSize: 16,
+  inputButtonIconStyle: {
+    color: '#5a72e8',
   },
 });

@@ -4,6 +4,7 @@ export const ActionAddTodo = (title: string) => {
   return {
     item: new Todo(title),
     type: 'ADD_TODO',
+    id: '',
   };
 };
 
@@ -28,10 +29,18 @@ export const ActionCompleteTodo = (id: string) => {
   };
 };
 
-export type TodoActionType = ReturnType<typeof ActionAddTodo> &
-  ReturnType<typeof ActionDeleteActiveTodo> &
-  ReturnType<typeof ActionDeleteCompletedTodo> &
-  ReturnType<typeof ActionCompleteTodo>;
+export const ActionMoveBackToPending = (id: string) => {
+  return {
+    id: id,
+    type: 'MOVE_BACK_TO_PENDING',
+  };
+};
+
+export type TodoActionType = {
+  id: string;
+  type: string;
+  item: Todo | undefined;
+};
 
 export const EmptyAction: TodoActionType = {
   id: '',
