@@ -4,7 +4,7 @@ class Todo {
 
   constructor(title: string) {
     this.id = Math.random().toString();
-    this.title = title;
+    this.title = title.trim();
   }
 }
 

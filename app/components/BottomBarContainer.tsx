@@ -54,19 +54,13 @@ export default class BottomBarContainer extends React.Component {
             return (
               <Ionicons
                 name="checkmark-done"
-                size={props.focused ? props.size + 4 : props.size}
+                size={props.size}
                 color="#2181ff"
               />
             );
           }
           default: {
-            return (
-              <Ionicons
-                name="list"
-                size={props.focused ? props.size + 4 : props.size}
-                color="#ff3421"
-              />
-            );
+            return <Ionicons name="list" size={props.size} color="#ff3421" />;
           }
         }
       },

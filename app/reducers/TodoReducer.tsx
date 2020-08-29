@@ -7,7 +7,7 @@ const TodoReducer = (
 ): TodoListState => {
   switch (action.type) {
     case 'ADD_TODO': {
-      if (action.item) {
+      if (action.item && action.item.title.length > 0) {
         return {
           ...state,
           activeTodoList: [...state.activeTodoList, action.item],

@@ -43,7 +43,7 @@ export default class CompletedTodoListView extends React.Component<
   render() {
     return (
       <View style={{backgroundColor: 'black', flex: 1}}>
-        <AppBar title="Todo List" subtitle="Pending" />
+        <AppBar title="Todo List" subtitle="Completed" />
         <FlatList
           data={this.props.completedTodoList}
           keyExtractor={(item) => item.id}
